@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Students Advocating for Change | Your Voice Is the Movement</title>
+  <meta name="description" content="Students Advocating for Change unites students nationwide to address the issues that matter most through activism, awareness, and collective action.">
+  <meta property="og:title" content="Students Advocating for Change">
+  <meta property="og:description" content="Student-led. Community-driven. Join the movement.">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#C4622D">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chango&family=Nunito+Sans:wght@400;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --cream: #FAF6EE;
+      --cream-deep: #F3EBDA;
+      --butter: #F6E7B4;
+      --ink: #231C19;
+      --ink-soft: #5A4F49;
+      --clay: #C4622D;
+      --clay-dark: #A44E20;
+      --gold: #CFA73A;
+      --line: #E6DCC8;
+      --radius: 18px;
+      --serif: "Playfair Display", Georgia, "Times New Roman", serif;
+      --sans: "Nunito Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+      --wrap: 1180px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+    body {
+      margin: 0;
+      font-family: var(--sans);
+      font-size: 1.0625rem;
+      line-height: 1.65;
+      color: var(--ink);
+      background: var(--cream);
+      -webkit-font-smoothing: antialiased;
+    }
+    img, svg { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    h1, h2, h3 { font-family: var(--serif); line-height: 1.12; margin: 0; letter-spacing: -0.01em; }
+    p { margin: 0; }
+    .wrap { width: min(var(--wrap), 100% - 3rem); margin-inline: auto; }
+
+    :focus-visible { outline: 3px solid var(--clay); outline-offset: 3px; border-radius: 6px; }
+    .skip { position: absolute; left: -999px; top: 0; background: var(--ink); color: #fff; padding: .75rem 1rem; z-index: 200; }
+    .skip:focus { left: 0; }
+
+    /* ---------- Buttons ---------- */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+      font: 800 .95rem/1 var(--sans);
+      padding: 1rem 1.7rem;
+      border-radius: 999px;
+      border: 2px solid transparent;
+      cursor: pointer;
+      transition: background-color .2s, color .2s, border-color .2s, transform .2s;
+    }
+    .btn:active { transform: translateY(1px); }
+    .btn-primary { background: var(--clay); color: #fff; box-shadow: 0 8px 18px -8px rgba(164,78,32,.7); }
+    .btn-primary:hover { background: var(--clay-dark); }
+    .btn-outline { border-color: var(--ink-soft); color: var(--ink); background: transparent; }
+    .btn-outline:hover { background: var(--ink); color: #fff; border-color: var(--ink); }
+    .btn-gold { background: var(--gold); color: var(--ink); padding: .7rem 1.3rem; font-size: .88rem; }
+    .btn-gold:hover { background: #BF9730; }
+    .btn-donate { background: var(--clay); color: #fff; padding: .7rem 1.3rem; font-size: .88rem; }
+    .btn-donate:hover { background: var(--clay-dark); }
+    .btn-white { background: #fff; color: var(--clay-dark); box-shadow: 0 10px 24px -10px rgba(0,0,0,.45); }
+    .btn-white:hover { background: var(--cream); }
+
+    /* ---------- Header ---------- */
+    .site-header {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(250,246,238,.94);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; min-height: 76px; gap: 1.5rem; }
+    .brand { display: flex; align-items: center; gap: .6rem; }
+    .brand-text { font-family: var(--serif); font-weight: 700; font-size: .9rem; line-height: 1.1; color: var(--ink); }
+    .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; margin: 0; padding: 0; }
+    .nav-links a:not(.btn) { font-weight: 600; font-size: .95rem; color: var(--ink-soft); padding: .25rem 0; border-bottom: 2px solid transparent; transition: color .2s, border-color .2s; }
+    .nav-links a:not(.btn):hover { color: var(--ink); border-color: var(--clay); }
+    .nav-actions { display: flex; align-items: center; gap: .6rem; }
+    .menu-toggle { display: none; background: none; border: 0; padding: .5rem; cursor: pointer; color: var(--ink); }
+
+    /* ---------- Hero ---------- */
+    .hero { position: relative; overflow: hidden; padding: clamp(3.5rem, 8vw, 7rem) 0 clamp(4rem, 8vw, 7rem); isolation: isolate; }
+    .hero::before {
+      content: ""; position: absolute; inset: 0; z-index: -2;
+      background: url("images/hero-bg.jpg") center/cover no-repeat, var(--cream-deep);
+    }
+    .hero::after {
+      content: ""; position: absolute; inset: 0; z-index: -1;
+      background: linear-gradient(100deg, rgba(250,246,238,.97) 25%, rgba(250,246,238,.86) 100%);
+    }
+    .hero-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 3rem; align-items: center; }
+    .kicker { font-weight: 800; font-size: .9rem; color: var(--clay-dark); margin-bottom: 1.1rem; }
+    .hero h1 { font-size: clamp(3rem, 7.5vw, 5.8rem); font-weight: 800; letter-spacing: -0.02em; line-height: 1.02; }
+    .hero h1 .accent { color: var(--clay); display: block; }
+    .hero-copy { margin-top: 1.75rem; max-width: 34rem; font-size: 1.15rem; color: var(--ink-soft); }
+    .hero-cta { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 2.25rem; }
+
+    .badge-card {
+      justify-self: center;
+      width: min(100%, 400px);
+      aspect-ratio: 1;
+      background: var(--butter);
+      border-radius: 42% 58% 55% 45% / 48% 44% 56% 52%;
+      display: grid; place-items: center; align-content: center; gap: .4rem;
+      padding: 2rem;
+      box-shadow: 0 30px 60px -30px rgba(120,70,20,.5);
+      text-align: center;
+    }
+    .logo-img { width: 40px; height: 40px; object-fit: contain; border-radius: 6px; background: var(--cream-deep); }
+    .site-footer .logo-img { background: transparent; }
+    .badge-card img { width: 100%; height: 100%; object-fit: contain; border-radius: inherit; }
+    .badge-card .abbr { font-family: "Chango", var(--serif); font-size: 2rem; color: var(--clay); letter-spacing: .04em; line-height: 1; }
+    .badge-card svg { width: 62%; height: auto; }
+    .badge-card .tag { font-family: "Chango", var(--serif); font-size: 1rem; line-height: 1.25; color: var(--clay); max-width: 14rem; }
+
+    .fist-fab {
+      position: fixed; right: 1.25rem; bottom: 1.25rem; z-index: 90;
+      width: 56px; height: 56px; border-radius: 50%;
+      background: var(--clay); color: #fff; border: 0; cursor: pointer;
+      display: grid; place-items: center;
+      box-shadow: 0 12px 24px -8px rgba(164,78,32,.8);
+      opacity: 0; pointer-events: none; transform: translateY(10px);
+      transition: opacity .25s, transform .25s, background-color .2s;
+    }
+    .fist-fab.show { opacity: 1; pointer-events: auto; transform: none; }
+    .fist-fab:hover { background: var(--clay-dark); }
+
+    /* ---------- About ---------- */
+    .about { padding: clamp(4rem, 8vw, 7rem) 0 clamp(2rem, 4vw, 3rem); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 5vw, 4.5rem); align-items: center; }
+    .quote {
+      position: relative;
+      background: linear-gradient(135deg, #FBF3E1, #F6EBD2);
+      border-left: 6px solid var(--clay);
+      border-radius: var(--radius);
+      padding: 3.6rem 2.4rem 2.4rem;
+    }
+    .quote::before {
+      content: "\201D"; position: absolute; top: .4rem; left: 1.7rem;
+      font-family: var(--serif); font-size: 5rem; line-height: 1; color: rgba(196,98,45,.3);
+    }
+    .quote p { font-family: var(--serif); font-weight: 700; font-size: clamp(1.5rem, 2.6vw, 2rem); line-height: 1.25; }
+    .about-copy p { color: var(--ink-soft); font-size: 1.1rem; }
+    .about-copy .strong { margin-top: 1.5rem; font-family: var(--serif); font-weight: 700; font-size: 1.15rem; color: var(--ink); }
+
+    /* ---------- Issues ---------- */
+    .issues { padding: clamp(3rem, 6vw, 5rem) 0 clamp(4rem, 8vw, 6.5rem); }
+    .section-title { font-size: clamp(2.2rem, 4.5vw, 3.2rem); font-weight: 800; }
+    .section-title::after { content: ""; display: block; width: 56px; height: 4px; border-radius: 2px; background: var(--clay); margin-top: 1rem; }
+    .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 3rem; align-items: start; }
+    .card { background: #fff; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); box-shadow: 0 18px 36px -24px rgba(60,40,20,.45); }
+    .card:nth-child(2) { margin-top: 1.5rem; }
+    .card-media { position: relative; aspect-ratio: 16/11; background: linear-gradient(135deg, #E9D6B4, #D9B98C); overflow: hidden; }
+    .card-media img { width: 100%; height: 100%; object-fit: cover; }
+    .chip { position: absolute; top: .9rem; left: .9rem; background: var(--clay); color: #fff; font-weight: 800; font-size: .75rem; padding: .35rem .8rem; border-radius: 999px; }
+    .card-body { padding: 1.6rem 1.6rem 1.9rem; }
+    .card h3 { font-size: 1.45rem; font-weight: 700; margin-bottom: .6rem; }
+    .card p { color: var(--ink-soft); font-size: .98rem; }
+    .see-all { display: block; width: fit-content; margin: 3rem auto 0; font-weight: 800; color: var(--clay-dark); border-bottom: 2px solid var(--clay); padding-bottom: .15rem; }
+    .see-all:hover { color: var(--ink); }
+
+    /* ---------- Impact ---------- */
+    .impact { background: var(--ink); color: #fff; padding: clamp(4rem, 8vw, 6rem) 0; }
+    .impact h2 { text-align: center; font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 700; }
+    .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; margin: 3.5rem 0 0; padding: 0; list-style: none; text-align: center; }
+    .stat-num { font-family: var(--serif); font-weight: 800; font-size: clamp(2.8rem, 5vw, 4rem); color: var(--clay); line-height: 1; }
+    .stat-label { margin-top: .8rem; font-weight: 700; font-size: .85rem; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.75); }
+
+    /* ---------- Donate band ---------- */
+    .donate { background: var(--clay); color: #fff; padding: clamp(3rem, 6vw, 4.5rem) 0; }
+    .donate-inner { display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+    .donate h2 { font-size: clamp(2rem, 4vw, 2.9rem); font-weight: 800; }
+    .donate p { margin-top: .6rem; font-size: 1.1rem; opacity: .95; }
+
+    /* ---------- Final CTA ---------- */
+    .cta { padding: clamp(4rem, 8vw, 7rem) 0; }
+    .cta-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: clamp(2rem, 5vw, 4.5rem); align-items: center; }
+    .cta-photo {
+      aspect-ratio: 1.12; background: linear-gradient(135deg, #2A2320, #4A3A30);
+      border-radius: 46% 54% 52% 48% / 58% 44% 56% 42%;
+      overflow: hidden; box-shadow: 0 30px 60px -30px rgba(40,25,15,.65);
+    }
+    .cta-photo img { width: 100%; height: 100%; object-fit: cover; }
+    .cta h2 { font-size: clamp(2.2rem, 4.5vw, 3.2rem); font-weight: 800; }
+    .cta p { margin-top: 1.25rem; color: var(--ink-soft); font-size: 1.1rem; max-width: 33rem; }
+    .cta .hero-cta { margin-top: 2rem; }
+
+    /* ---------- Footer ---------- */
+    .site-footer { background: var(--ink); color: rgba(255,255,255,.82); padding: 4rem 0 2rem; position: relative; }
+    .site-footer::before {
+      content: ""; position: absolute; top: -1px; left: 0; right: 0; height: 28px;
+      background: var(--cream);
+      -webkit-mask: radial-gradient(18px at 18px 0, #000 98%, transparent 100%) 0 0/36px 28px repeat-x;
+              mask: radial-gradient(18px at 18px 0, #000 98%, transparent 100%) 0 0/36px 28px repeat-x;
+      transform: scaleY(-1); transform-origin: center;
+      display: none;
+    }
+    .footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 3rem; }
+    .footer-brand .brand-text { color: #fff; }
+    .footer-brand p { margin-top: 1.25rem; max-width: 22rem; font-size: 1rem; }
+    .footer-col h4 { margin: 0 0 1.1rem; font-family: var(--serif); font-weight: 600; font-size: .95rem; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.6); }
+    .footer-col ul { list-style: none; margin: 0; padding: 0; display: grid; gap: .7rem; }
+    .footer-col a:hover { color: var(--gold); }
+    .social { display: flex; gap: 1rem; margin-bottom: 1.5rem; }
+    .social a { width: 40px; height: 40px; display: grid; place-items: center; border-radius: 50%; border: 1px solid rgba(255,255,255,.25); transition: background-color .2s, border-color .2s; }
+    .social a:hover { background: var(--clay); border-color: var(--clay); }
+    .contact-line { font-size: .95rem; }
+    .contact-line a { color: var(--gold); border-bottom: 1px solid currentColor; }
+    .legal { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,.14); font-size: .85rem; color: rgba(255,255,255,.6); }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 980px) {
+      .hero-grid, .about-grid, .cta-grid { grid-template-columns: 1fr; }
+      .badge-card { width: min(100%, 340px); }
+      .cards { grid-template-columns: 1fr; max-width: 560px; margin-inline: auto; }
+      .card:nth-child(2) { margin-top: 0; }
+      .stats { grid-template-columns: repeat(2, 1fr); row-gap: 3rem; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .footer-brand { grid-column: 1 / -1; }
+      .cta-photo { order: -1; }
+    }
+    @media (max-width: 860px) {
+      .menu-toggle { display: block; }
+      .nav-links {
+        position: absolute; top: 100%; left: 0; right: 0;
+        flex-direction: column; align-items: stretch; gap: 0;
+        background: var(--cream); border-bottom: 1px solid var(--line);
+        padding: .5rem 1.5rem 1.25rem;
+        display: none;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links li { border-bottom: 1px solid var(--line); }
+      .nav-links a:not(.btn) { display: block; padding: .9rem 0; border: 0; }
+      .nav-links li.nav-cta { border: 0; padding-top: 1rem; }
+      .nav-actions { gap: .6rem; }
+      .nav-links li.nav-cta .btn { width: 100%; }
+    }
+    @media (max-width: 520px) {
+      .wrap { width: min(var(--wrap), 100% - 2rem); }
+      .hero-cta .btn { width: 100%; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .donate-inner .btn { width: 100%; }
+      .brand-text { font-size: .8rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      * { transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <!-- Reusable logo mark -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="mark" viewBox="0 0 48 56">
+      <rect x="8" y="6" width="11" height="26" rx="4" fill="#231C19"/>
+      <rect x="20" y="3" width="11" height="28" rx="4" fill="#C4622D"/>
+      <rect x="32" y="8" width="10" height="24" rx="4" fill="#CFA73A"/>
+      <rect x="6" y="28" width="38" height="14" rx="5" fill="#8A3F1C"/>
+      <rect x="10" y="40" width="30" height="13" rx="4" fill="#231C19"/>
+    </symbol>
+    <symbol id="fist" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M8 3a2 2 0 0 1 2 2v1.2a2 2 0 0 1 3.4-1.1A2 2 0 0 1 17 6v.2a2 2 0 0 1 3 1.7V14a7 7 0 0 1-7 7h-1a7 7 0 0 1-7-7V5a2 2 0 0 1 2-2h1Z"/>
+    </symbol>
+  </svg>
+
+  <header class="site-header">
+    <div class="wrap nav">
+      <a href="#top" class="brand" aria-label="Students Advocating for Change, home">
+        <img class="logo-img" src="images/logo.jpg" alt="" width="40" height="40">
+        <span class="brand-text">Students<br>Advocating<br>for Change</span>
+      </a>
+
+      <nav aria-label="Primary">
+        <ul class="nav-links" id="nav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#issues">Issues</a></li>
+          <li><a href="#get-involved">Get Involved</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="#get-involved" class="btn btn-gold">Join Us</a>
+        <a href="#donate" class="btn btn-donate">Donate</a>
+        <button class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Toggle menu">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- HERO -->
+    <section class="hero" id="top">
+      <div class="wrap hero-grid">
+        <div>
+          <p class="kicker">Student-led. Community-driven.</p>
+          <h1>Your Voice Is the <span class="accent">Movement</span></h1>
+          <p class="hero-copy">Students Advocating for Change unites students nationwide to address the issues that matter most &mdash; through activism, awareness, and collective action.</p>
+          <div class="hero-cta">
+            <a href="#get-involved" class="btn btn-primary">Join the Movement</a>
+            <a href="#issues" class="btn btn-outline">See Our Projects</a>
+          </div>
+        </div>
+
+        <div class="badge-card">
+          <img src="images/logo.jpg" alt="Students Advocating for Change logo. Our voice is where change begins.">
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="about" id="about" aria-labelledby="about-heading">
+      <div class="wrap about-grid">
+        <blockquote class="quote" style="margin:0">
+          <p>Change doesn&rsquo;t wait for permission. It starts with students like you.</p>
+        </blockquote>
+        <div class="about-copy">
+          <h2 id="about-heading" class="sr-only" style="position:absolute;left:-9999px">About Students Advocating for Change</h2>
+          <p>We believe every student has the power to shape their community. Students Advocating for Change equips young people with the tools, connections, and courage to take on the issues that affect their lives &mdash; from civic engagement to educational equity to building community.</p>
+          <p class="strong">Nationwide. Student-led. Community-driven.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ISSUES -->
+    <section class="issues" id="issues" aria-labelledby="issues-heading">
+      <div class="wrap">
+        <h2 class="section-title" id="issues-heading">What We&rsquo;re Fighting For</h2>
+
+        <div class="cards">
+          <article class="card">
+            <div class="card-media">
+              <img src="images/civic-engagement.jpg" alt="Student volunteers in matching white shirts posing together at an outdoor event" loading="lazy" onerror="this.remove()">
+              <span class="chip">Civic Engagement</span>
+            </div>
+            <div class="card-body">
+              <h3>Civic Engagement</h3>
+              <p>Engaging youth to engage civically in our society as citizens. Educating, empowering, and giving youth a place at the table to express their views.</p>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-media">
+              <img src="images/educational-equity.jpg" alt="Students handing out school supplies and materials" loading="lazy" onerror="this.remove()">
+              <span class="chip">Education</span>
+            </div>
+            <div class="card-body">
+              <h3>Educational Equity</h3>
+              <p>Fighting for education across all levels. Our aim is to create a conscious society of youth and individuals so they can be empowered to pursue their dreams.</p>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-media">
+              <img src="images/community-safety.jpg" alt="Handwritten thank-you note reading Gracias por todo lo que hacen on foil-wrapped food" loading="lazy" onerror="this.remove()">
+              <span class="chip">Community</span>
+            </div>
+            <div class="card-body">
+              <h3>Community Safety</h3>
+              <p>Advocating for policies that protect and empower communities. Engaging broader communities to unite and grow together.</p>
+            </div>
+          </article>
+        </div>
+
+        <a href="#get-involved" class="see-all">See all Projects &rarr;</a>
+      </div>
+    </section>
+
+    <!-- IMPACT -->
+    <section class="impact" aria-labelledby="impact-heading">
+      <div class="wrap">
+        <h2 id="impact-heading">Our Impact</h2>
+        <ul class="stats">
+          <li><div class="stat-num"><span data-count="2000">2,000</span>+</div><div class="stat-label">Students reached</div></li>
+          <li><div class="stat-num"><span data-count="10">10</span>+</div><div class="stat-label">Successful projects</div></li>
+          <li><div class="stat-num"><span data-count="2">2</span></div><div class="stat-label">States impacted</div></li>
+          <li><div class="stat-num"><span data-count="3">3</span></div><div class="stat-label">Years of action</div></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- DONATE -->
+    <section class="donate" id="donate" aria-labelledby="donate-heading">
+      <div class="wrap donate-inner">
+        <div>
+          <h2 id="donate-heading">Power the next campaign.</h2>
+          <p>Your donation goes directly to student-led organizing and activism.</p>
+        </div>
+        <!-- Replace # with your donation link (PayPal, Venmo, Givebutter, etc.) -->
+        <a href="#" class="btn btn-white">Donate Now &rarr;</a>
+      </div>
+    </section>
+
+    <!-- GET INVOLVED -->
+    <section class="cta" id="get-involved" aria-labelledby="cta-heading">
+      <div class="wrap cta-grid">
+        <div class="cta-photo">
+          <img src="images/festival.jpg" alt="Five students holding a Nuestra Tierra Festival banner in front of an outdoor stage at night" loading="lazy" onerror="this.remove()">
+        </div>
+        <div>
+          <h2 id="cta-heading">Ready to Make a Difference?</h2>
+          <p>Whether you&rsquo;re a first-time activist or a seasoned organizer, there&rsquo;s a place for you here. Propose a project, start a chapter, or just show up &mdash; every action matters.</p>
+          <div class="hero-cta">
+            <a href="#contact" class="btn btn-primary">Get Involved Today</a>
+            <a href="#about" class="btn btn-outline">Learn More About Us</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer" id="contact">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#top" class="brand" aria-label="Back to top">
+            <img class="logo-img" src="images/logo.jpg" alt="" width="40" height="40">
+            <span class="brand-text">Students<br>Advocating<br>for Change</span>
+          </a>
+          <p>Every voice matters. Every action counts. Together, we build the change we need.</p>
+        </div>
+
+        <nav class="footer-col" aria-label="Footer">
+          <h4>Navigate</h4>
+          <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#issues">Issues &amp; Campaigns</a></li>
+            <li><a href="#get-involved">Get Involved</a></li>
+          </ul>
+        </nav>
+
+        <div class="footer-col">
+          <h4>Connect</h4>
+          <div class="social">
+            <!-- Replace # with your real profile links -->
+            <a href="https://www.instagram.com/safc_immokalee/" target="_blank" rel="noopener" aria-label="Instagram @safc_immokalee">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+            </a>
+            <a href="#" aria-label="Facebook">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 22v-8h2.7l.5-3.3h-3.2V8.6c0-.9.4-1.7 1.8-1.7h1.5V4.1S15.5 3.9 14.3 3.9c-2.6 0-4.3 1.6-4.3 4.4v2.4H7.3V14H10v8h3.5Z"/></svg>
+            </a>
+          </div>
+          <p class="contact-line">Questions? <a href="mailto:safcimmokalee@gmail.com">safcimmokalee@gmail.com</a></p>
+        </div>
+      </div>
+
+      <p class="legal">&copy; 2026 Students Advocating for Change. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <button class="fist-fab" id="fab" aria-label="Back to top">
+    <svg width="26" height="26"><use href="#fist"/></svg>
+  </button>
+
+  <script>
+    // Mobile menu
+    const toggle = document.getElementById('menu-toggle');
+    const links = document.getElementById('nav-links');
+    toggle.addEventListener('click', () => {
+      const open = links.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', open);
+    });
+    links.addEventListener('click', e => {
+      if (e.target.closest('a')) { links.classList.remove('open'); toggle.setAttribute('aria-expanded', false); }
+    });
+
+    // Back-to-top fist button
+    const fab = document.getElementById('fab');
+    addEventListener('scroll', () => fab.classList.toggle('show', scrollY > 600), { passive: true });
+    fab.addEventListener('click', () => scrollTo({ top: 0 }));
+
+    // Impact numbers count up once when scrolled into view
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const nums = document.querySelectorAll('[data-count]');
+    if (!reduce && 'IntersectionObserver' in window) {
+      const io = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          const el = entry.target, end = +el.dataset.count, dur = 1200, start = performance.now();
+          const tick = now => {
+            const p = Math.min((now - start) / dur, 1);
+            el.textContent = Math.round(end * (1 - Math.pow(1 - p, 3))).toLocaleString();
+            if (p < 1) requestAnimationFrame(tick);
+          };
+          requestAnimationFrame(tick);
+          io.unobserve(el);
+        });
+      }, { threshold: .6 });
+      nums.forEach(n => io.observe(n));
+    }
+  </script>
+</body>
+</html>
